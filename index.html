@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Заголовок-->
+    <link rel="icon" href="ico/LKI.png">
+    <title>LKI STORAGE КАА</title>
+    <meta name="tutor" content="LKI">
+    <meta name="author" content="КАА">
+
+
+<!-- Настройки. (Переделать на без интернет)-->	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://rawgit.com/vitmalina/w2ui/master/dist/w2ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://rawgit.com/vitmalina/w2ui/master/dist/w2ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="lki.css" />
+</head>
+
+<!-- Зявка табов -->
+<script type="text/javascript">
+var config = {
+    tabs: {
+        name: 'tabs',
+        active: 'tab9',
+        tabs: [
+            { id: 'tab1', caption: 'Главная' },
+            { id: 'tab2', caption: 'Просмотр' },
+            { id: 'tab3', caption: 'Отчеты' },
+			{ id: 'tab4', caption: 'Протокол' },
+			{ id: 'tab5', caption: '&#9735;' },
+			{ id: 'tab6', caption: '&#9736' },
+			{ id: 'tab7', caption: '&#9734' },
+			{ id: 'tab8', caption: '&#9745' },
+			{ id: 'tab9', caption: '&#63;' }       
+			],
+        onClick: function (event) {
+            $('#tab-example .tab').hide();
+            $('#tab-example #' + event.target).show();
+        }
+    }
+}
+$(function () {
+    $('#tabs').w2tabs(config.tabs);
+    $('#tab1').show();
+});
+</script>
+
+<!-- Каркас -->
+<script>
+
+//Шесть панелей
+$(function () {
+var pstyle = 'border: 1px solid #dfdfdf; padding: 1px;';
+    $('#layout').w2layout({
+        name: 'layout1',
+        panels: [
+            { type: 'top', size: 300, resizable: true, hidden: true, style: pstyle, content: 'Родился на улице Герцена, в гастрономе номер двадцать два. Известный экономист, по призванию своему — библиотекарь. В народе — колхозник. В магазине — продавец. В экономике, так сказать, необходим. Это, так сказать, система… э-э-э… в составе ста двадцати единиц. Фотографируете Мурманский полуостров и получаете «Те-ле-фун-кен». И бухгалтер работает по другой линии — по линии библиотекаря. Потому что не воздух будет, академик будет! Ну вот можно сфотографировать Мурманский полуостров. Можно стать воздушным асом. Можно стать воздушной планетой. И будешь уверен, что эту планету примут по учебнику. Значит, на пользу физике пойдёт одна планета. Величина, оторванная в область дипломатии, даёт свои колебания на всю дипломатию. А Илья Муромец даёт колебания только на семью на свою. Спичка в библиотеке работает. В кинохронику ходят и зажигают в кинохронике большой лист. В библиотеке маленький лист разжигают. Огонь… э-э-э… будет вырабатываться гораздо легче, чем учебник крепкий. А крепкий учебник будет весомее, чем гастроном на улице Герцена. А на улице Герцена будет расщеплённый учебник. Тогда учебник будет проходить через улицу Герцена, через гастроном номер двадцать два, и замещаться там по формуле экономического единства. Вот в магазине двадцать два она может расщепиться, экономика! На экономистов, на диспетчеров, на продавцов, на культуру торговли… Так что, в эту сторону двинется вся экономика. Библиотека двинется в сторону ста двадцати единиц, которые будут… э-э-э… предмет укладывать на предмет. Сто двадцать единиц — предмет физика. Электрическая лампочка горит от ста двадцати кирпичей, потому что структура, так сказать, похожа у неё на кирпич. Илья Муромец работает на стадионе «Динамо». Илья Муромец работает у себя дома. Вот конкретная дипломатия! «Открытая дипломатия» — то же самое. Ну, берём телевизор, вставляем в Мурманский полуостров, накручиваем там… э-э-э… всё время чёрный хлеб… Так что же, будет Муромец, что ли, вырастать? Илья Муромец, что ли, будет вырастать из этого?' },
+            { type: 'left', size: 300, resizable: true, style: pstyle, content: 'left' },
+            { type: 'main', style: pstyle },
+            { type: 'right', size: 300, resizable: true, style: pstyle, content: 'right' },
+            { type: 'preview', size: '70%', resizable: true, hidden: true, style: pstyle, content: 'preview' },
+            { type: 'bottom', size: 30, resizable: true, hidden: true, style: pstyle, content: 'bottom' }
+     
+        ]
+    });
+    
+//Главный грид
+    $().w2grid({ 
+        name: 'grid', 
+        show: { 
+            toolbar: true,
+            footer: true
+        },
+        searches: [                
+            { field: 'recid', caption: 'ID (int)', type: 'int' },
+            { field: 'id', caption: 'ID (float)', type: 'float' },
+            { field: 'fname', caption: 'First Name', type: 'text' },
+            { field: 'lname', caption: 'Last Name', type: 'text' },
+            { field: 'email', caption: 'Email', type: 'list', items: ['vitali@gmail.com', 'jim@gmail.com'] },
+            { field: 'sdate', caption: 'Date', type: 'date' }
+        ],
+        sortData: [ { field: 'recid', direction: 'asc' } ],
+        columns: [                
+            { field: 'recid', caption: 'hID', size: '50px', sortable: true, resizable: true },
+            { field: 'lname', caption: 'Компания', size: '30%', sortable: true, resizable: true },
+            { field: 'fname', caption: 'Пользователь', size: '30%', sortable: true, resizable: true },
+            { field: 'email', caption: 'Email', size: '40%', resizable: true, sortable: true },
+            { field: 'sdate', caption: 'Регистрация', size: '120px', resizable: true },
+            { field: 'sdate', caption: 'Последняя операция', size: '120px', resizable: true },
+            { field: 'sdate', caption: 'Актуальная дата', size: '120px', resizable: true },
+        ],
+        records: [
+     		{ recid: 1, fname: 'Наташа К', lname: 'Doe', email: 'vitali@gmail.com', sdate: '1/3/2012' },
+            { recid: 2, fname: 'Александр К', lname: 'LKI', email: 'jdoe@gmail.com', sdate: '2/4/2012' },
+            { recid: 3, fname: 'Евгкний Д', lname: 'Franson', email: 'jdoe@gmail.com', sdate: '4/23/2012' },
+            { recid: 4, fname: 'Халид Б', lname: 'Ottie', email: 'jdoe@gmail.com', sdate: '5/3/2012' },
+            { recid: 5, fname: 'Юрий Н', lname: 'Silver', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 6, fname: 'Дмитрий Ф', lname: 'Gatos', email: 'vitali@gmail.com', sdate: '2/5/2012' },
+            { recid: 7, fname: 'Владимир П', lname: 'Welldo', email: 'jdoe@gmail.com', sdate: '8/25/2012' },
+            { recid: 8, fname: 'Натали П', lname: 'Bann', email: 'jdoe@gmail.com', sdate: '9/3/2012' },
+            { recid: 9, fname: 'Брюс У', lname: 'Rachman', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 20, fname: 'Николай К', lname: 'Doe', email: 'jdoe@gmail.com', sdate: '10/3/2012' },
+            { recid: 21, fname: 'Сергей Л', lname: 'Motzart', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 22, fname: 'Сергей Б', lname: 'Franson', email: 'vitali@gmail.com', sdate: '4/3/2012' },
+            { recid: 23, fname: 'Тамара К', lname: 'Ottie', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 24, fname: 'Николай Б', lname: 'Silver', email: 'jim@gmail.com', sdate: '12/3/2012' },
+            { recid: 25, fname: 'Алина П', lname: 'Gatos', email: 'jim@gmail.com', sdate: '4/3/2012' },
+            { recid: 26, fname: 'Денис П', lname: 'Welldo', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 27, fname: 'Жанна А', lname: 'Bark', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
+            { recid: 28, fname: 'Дональд Т', lname: 'Rachman', email: 'jdoe@gmail.com', sdate: '4/3/2012' }
+        ],
+        onClick: function (event) {
+            var rec = this.get(event.recid);
+            w2ui['form'].record = rec;
+            w2ui['form'].refresh();
+            event.onComplete = function () {
+                if (this.getSelection().length == 0) $('#delete').attr('disabled', true); else $('#delete').removeAttr('disabled');
+            }
+        }
+    });
+
+//Форма главного грида    
+    $().w2form({ 
+        name     : 'form',
+        form_url : 'form-template.html',
+        fields: [
+            { name: 'fname', type: 'text', required: true },
+            { name: 'lname', type: 'text', required: true },
+            { name: 'email', type: 'email' },
+            { name: 'sdate',  type: 'date' }
+        ],
+        onRefresh: function (event) {
+
+        },
+        actions: {
+            reset: function () {
+                this.clear();
+            },
+            save: function () {
+                // check for errors
+                var errors = this.validate();
+                if (errors.length > 0 ) return;
+
+                var rec = this.record;
+                if (typeof rec.recid == 'undefined') { // new record
+                    rec.recid = 100 + w2ui['grid'].records.length;
+                    w2ui['grid'].add(rec);
+                } else { // existing
+                    if (!w2ui['grid'].get(rec.recid)) alert('Record is not found.');
+                    w2ui['grid'].set(rec.recid, rec);
+                }
+                //w2ui['grid'].refresh();
+            },
+            delete: function () {
+                this.clear();
+                w2ui['grid'].remove.apply(w2ui['grid'], w2ui['grid'].getSelection());
+                $('#delete').attr('disabled', true);
+            }
+        }
+    });
+    // -- INITIATE. Подключение кода к панелям каркаса 
+    w2ui['layout1'].content('main', w2ui['grid']);
+    w2ui['layout1'].content('right', w2ui['form']);
+});
+//]]>
+</script>
+
+<!-- Меню (левая панель) -->
+<script type="text/javascript">
+$(function () {
+    $('#sidebar').w2sidebar({
+        name : 'sidebar1',
+        nodes: [
+            { id: 'level-1', text: 'LKI (Инфраструктура ключей)', img: 'icon-folder', group: true,
+              nodes: [ { id: 'Jathns', text: 'Оферты ключей ', icon: 'fa-home' },
+                       { id: 'level-1-2', text: 'Акцепт (KYC)', icon: 'fa-coffee' },
+                       { id: 'level-1-3', text: 'Атрибутивные сертификаты', icon: 'fa-comment-alt' }
+                     ]
+            },
+            { id: 'level-2', text: 'ТиУ (Товары и Услуги)', img: 'icon-folder', group: true,
+              nodes: [ { id: 'level-2-1', text: 'Поиск ТиУ', icon: 'fa-star-empty' },
+                       { id: 'level-2-2', text: 'Прайсы', icon: 'fa-star-empty' },
+                       { id: 'level-2-3', text: 'Операции', icon: 'fa-star-empty' }
+                     ]
+            },
+            { id: 'level-3', text: 'ТАКТ (Финтех LKI)', img: 'icon-folder', expanded: true, group: true,
+              nodes: [ { id: 'level-3-1', text: 'Эскроу', icon: 'fa-star-empty' },
+                       { id: 'level-3-2', text: 'Лизинг', icon: 'fa-star-empty' },
+                       { id: 'level-3-3', text: 'Факторинг', icon: 'fa-star-empty' }
+                     ]
+            }
+        ],
+        onFocus: function (event) {
+          console.log('focus', event);
+          $('#hasFocus').html('<span style="background-color: #eee; padding: 5px; border-radius: 3px;">HAS FOCUS</span>');
+        },
+        onBlur: function (event) {
+          console.log('blur', event);
+          $('#hasFocus').html('');
+        }
+    });
+	
+    // -- Меню в левую панель
+    w2ui['layout1'].content('left', w2ui['sidebar1']);
+});
+</script>
+
+<!-- Просмотр -->
+<script type="text/javascript">
+$(function () {
+    $('#form').w2form({ 
+        name   : 'form1',
+        header : 'Form with Tabs and Columns',
+        url    : 'server/post',
+        tabs: [
+            { id: 'tab1', caption: 'General' },
+            { id: 'tab2', caption: 'Address'},
+            { id: 'tab3', caption: 'About' }
+        ],
+        fields : [
+            { field: 'first_name', type: 'text', html: { caption: 'First Name', page: 0, column: 0 } },
+            { field: 'last_name',  type: 'text', html: { caption: 'Last Name', page: 0, column: 0 } },
+            { field: 'comments',   type: 'textarea', html: { caption: 'Comments:', page: 0, column: 1, attr: 'style="height: 90px"' } },
+            { field: 'middle_name',  type: 'text', html: { caption: 'Middle Name' } },
+            { field: 'address1', type: 'text', html: { caption: 'Address', page: 1, column: 0, group: 'Address Group 1' } },
+            { field: 'address2', type: 'text', html: { caption: 'Line 2', page: 1, column: 0 } },
+            { field: 'country', type: 'text', html: { caption: 'Country', page: 1, column: 0, group: 'Address Group 3' } },
+            { field: 'city', type: 'text', html: { caption: 'City', page: 1, column: 1, group: 'Address Group 2' } },
+            { field: 'state', type: 'text', html: { caption: 'State', page: 1, column: 1 } },
+            { field: 'zip', type: 'int', html: { caption: 'Zip', page: 1, column: 1 } },
+            { field: 'short_bio', type: 'text', html: { caption: 'Short Bio', page: 2 } },
+            { field: 'talk_name', type: 'text', html: { caption: 'Talk Name', page: 2 } },
+            { field: 'description', type: 'text', html: { caption: 'Talk Description', page: 2 } }
+        ],
+        actions: {
+            reset: function () {
+                this.clear();
+            },
+            save: function () {
+                this.save();
+            }
+        }
+    });
+	// -- Форму в превью
+    w2ui['layout1'].content('preview', w2ui['form1']);
+});
+</script>
+
+<!-- Топ. Bottom меню -->
+
+<script type="text/javascript">
+$(function () {
+    $('#toolbar').w2toolbar({
+        name: 'toolbar1',
+        items: [
+            { type: 'button', id: 'item2', text: 'Нажми на меня', icon: 'fa-wrench' },
+            { type: 'break' },
+            { type: 'check', id: 'item3', text: 'Все', icon: 'fa-star' },
+            { type: 'check', id: 'item4', text: 'Не все', icon: 'fa-heart' },
+            { type: 'break' },
+            { type: 'radio', id: 'item5', group: '1', text: 'Рас Рас', icon: 'fa-star', checked: true },
+            { type: 'radio', id: 'item6', group: '1', text: 'Одын Одын', icon: 'fa-heart' },
+            { type: 'spacer' },
+            { type: 'button', id: 'item7', text: 'Выход', icon: 'fa-star' }
+        ],
+        onClick: function (event) {
+            console.log('Target: '+ event.target, event);
+        }
+    });
+		// -- Тулбар в Тор, bottom
+    w2ui['layout1'].content('top', w2ui['toolbar1']);
+    w2ui['layout1'].content('bottom', w2ui['toolbar1']);
+});
+</script>
+
+<!-- ДЕМО -->
+<body>
+
+<div id="tab-example">
+    <div id="tabs" style="width: 100%; height: 30px;"></div>
+    <div id="tab1" class="tab">
+<!-- Кнопки управления панелями каркаса -->
+<button onclick="w2ui['layout1'].toggle('top', window.instant)" style="height:25px">&#9683;</button>
+<button onclick="w2ui['layout1'].toggle('left', window.instant)" style="height:25px">&#9680;</button>
+<button onclick="w2ui['layout1'].toggle('right', window.instant)"style="height:25px">&#9681;</button>
+<button onclick="w2ui['layout1'].toggle('bottom', window.instant)" style="height:25px">&#9682;</button>
+<button onclick="w2ui['layout1'].toggle('preview', window.instant)" style="height:25px">&#9673;</button>
+
+<!-- Табы Каркаса -->
+<div id="layout" style="width: 100%; height: 500px;"></div>
+	</div>
+    <div id="tab2" class="tab">
+	Работа с Big Data. Поиск, сортировка, фильтр, колонки. 25 тысяч записей.
+                  <iframe width="100%" height="750px" src="lki/gridTrans.html" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+    <div id="tab3" class="tab">
+                  <iframe width="100%" height="750px" src="http://www.htmldrive.net/edit_media/2014/201402/20140216/sDashboard-master/example/ex.html" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+	<div id="tab4" class="tab">
+	                  <iframe width="100%" height="750px" src="https://www.jqwidgets.com/jquery-widgets-demo/demos/jqxdockinglayout/javascript-docking-layout-dashboard.htm?material-green" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+	<div id="tab5" class="tab">
+	<iframe width="100%" height="800px" src="lki/LKITEHNO/lki.html" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+<div id="tab6" class="tab">
+
+    <iframe width="100%" height="800px" src="lki/LKIOTKAZ/index.html" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+<div id="tab7" class="tab">
+<h1>Base64 кодирование и декодирование.
+<h4>Все серверные языки обеспечивают функциональность кодирования и декодирования base64, но не JavaScript. 
+<h4> Можно использовать w2utils для всех ваших потребностей base64.
+
+
+<textarea id="encode" style="width: 100%; height: 60px; border: 1px solid silver; padding: 10px; font-size: 16px">
+This <a href="http://link">is some</a> HTML <b>text</b> to be encoded.
+</textarea>
+<br><br>
+<button class="w2ui-btn" onclick="$('#encode').val(w2utils.base64encode($('#encode')[0].value))">Encode base64</button>
+<button class="w2ui-btn" onclick="$('#encode').val(w2utils.base64decode($('#encode')[0].value))">Decode base64</button>
+   
+<button class="w2ui-btn" onclick="w2alert(w2utils.encodeTags($('#encode')[0].value))">Encode HTML Tags</button>
+<button class="w2ui-btn" onclick="w2alert(w2utils.stripTags($('#encode')[0].value))">Strip HTML Tags</button>
+   
+<button class="w2ui-btn" onclick="w2alert(w2utils.md5($('#encode')[0].value))">Calculate md5</button>
+    </div>
+<div id="tab8" class="tab">
+                  <iframe width="100%" height="750px" src="https://www.jqwidgets.com/jquery-widgets-demo/demos/jqxpivotgrid/pivotgrid_designer.htm?material-green" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+<div id="tab9" class="tab">
+    <iframe width="100%" height="800px" src="http://www.htmldrive.net/edit_media/2015/201511/20151116/ztree_v3-master/demo/en/index.html" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    </div>
+</div>
+
+<!--Подвал-->	
+  <div id="footer">
+   <div>
+    &copy;LKI
+	<script>
+		var os = require('os');
+		document.getElementById('nw_version').innerHTML = 'LKI для '+ os.platform();
+	</script>
+	</div>	
+
+<!--Конец! ))-->	
+</body>
+</html>
